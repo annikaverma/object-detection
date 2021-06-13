@@ -31,15 +31,18 @@ function gotResult(error, results) {
 
 function draw() {
   image(img, 0, 0, 640, 420);
-  fill(255, 0, 0);
-  text("Dog", 45, 75);
-  noFill();
-  stroke(255, 0, 0);
-  rect(30, 60, 450, 350 );
 
-  fill("#FF0000");
-  text("cat", 320, 120);
-  noFill();
-  stroke("#FF0000");
-  rect(300, 90, 270, 320 );
+      if(status != "")
+      {
+        for (var i = 0; i < objects.length; i++) {
+          document.getElementById("status").innerHTML = "Status : Object Detected";
+    
+          fill(255, 0, 0);
+          percent = floor(objects[i].confidence * 100);
+          text(objects[i].label + " " + percent + "%", objects[i].x + 15, objects[i].y + 15);
+          noFill();
+          stroke(255, 0, 0);
+          rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
+        }
+      }
 }
